@@ -1,4 +1,27 @@
 {
+  "name": "nortes_worth_taking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "devStart": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jett65/Nortes_Worth_Taking.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jett65/Nortes_Worth_Taking/issues"
+  },
+  "homepage": "https://github.com/Jett65/Nortes_Worth_Taking#readme",
   "devDependencies": {
     "nodemon": "^2.0.20"
   }
