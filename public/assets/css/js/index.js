@@ -26,7 +26,7 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
-  fetch('/api/notes', {
+  fetch(`api/notes`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -116,10 +116,10 @@ const handleRenderSaveBtn = () => {
   }
 };
 
-// Render the list of note titles
+// Render the list of note title
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
-  if (window.location.pathname === '/api/notes') {
+  if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
