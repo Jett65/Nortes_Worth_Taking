@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const uuid = require('./helpers/uuid');
+const { consumers } = require("stream");
 
 
 const PORT = 3001;
@@ -20,31 +22,41 @@ app.post("/notes",(req,res) => {
     console.log(req.body.title);
 });
 
-app.get("/api/notes:id",(req,res,next) => {
-    // removes the : from the Id
-    let noCol = req.params.id
-    noCol = noCol.replace(":", "")
-
-    fs.readFile(`./db/${noCol}.json`, function(err, data) {
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.write(data);
-        return res.end();
-      });
+app.get("/api/notes",(req,res,next) => {
+    fs.readFile("./db/db.json","utf8",(err,data) => {
+        const parsedData = JSON.parse(data);
+        console.log(parsedData);
+        res.status(200).json(parsedData);
+    });
 });
 
 app.post("/api/notes",(req,res) => {
-    const newNote = [
-        {
-            title: req.body.title,
-            text: req.body.text
-        }
-    ];
 
-    const noteString = JSON.stringify(newNote);
-    fs.writeFile(`./db/${req.body.title}.json`,noteString,(err) => {
-        err ? console.log(err) : console.log("db added");
+    const newNote = {
+        title: req.body.title,
+        text: req.body.text,
+        note_id: uuid()
+    };
+
+    fs.readFile("./db/db.json","utf8",(err,data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            const prdata = JSON.parse(data);
+
+            prdata.push(newNote);
+
+            fs.writeFile("./db/db.json",JSON.stringify(prdata,null,4),(err) => {
+                err ? console.log(err) : console.log("Note Added");
+            });
+        }
+
     });
 
+});
+
+app.delete("/api/notes",(req,res) => {
+    res.send("test")
 });
 
 app.listen(PORT);
