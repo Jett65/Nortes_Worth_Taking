@@ -56,7 +56,7 @@ app.post("/api/notes",(req,res) => {
 });
 
 app.delete("/api/notes",(req,res) => {
-    res.send("test")
+    
 });
 
 app.listen(PORT);
