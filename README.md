@@ -26,6 +26,10 @@ This is an app that alous the user to take notes and save them to a data base
 
 This app can be used to take notes save them to a database and read the nots later as well as  delet old notes
 
+## Photos
+
+
+
 ## Questions
 
 For any questions contact me at
