@@ -1,11 +1,9 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const uuid = require('./helpers/uuid');
-const { consumers } = require("stream");
+const uuid = require("./helpers/uuid.js");
 
-
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
@@ -30,7 +28,7 @@ app.get("/api/notes",(req,res,next) => {
     });
 });
 
-app.post("/api/notes",(req,res) => {
+app.post("/api/notes",(req,res,next) => {
 
     const newNote = {
         title: req.body.title,
@@ -42,21 +40,45 @@ app.post("/api/notes",(req,res) => {
         if (err) {
             console.log(err);
         } else {
-            const prdata = JSON.parse(data);
+            const prData = JSON.parse(data);
 
-            prdata.push(newNote);
+            prData.push(newNote);
 
-            fs.writeFile("./db/db.json",JSON.stringify(prdata,null,4),(err) => {
+            fs.writeFile("./db/db.json",JSON.stringify(prData,null,4),(err) => {
                 err ? console.log(err) : console.log("Note Added");
             });
         }
-
+        next()
     });
 
 });
 
-app.delete("/api/notes",(req,res) => {
-    res.send("test")
+app.delete("/api/notes/:id",(req,res,next) => {
+    const trashNote = req.params.id;
+    console.log(trashNote);
+
+    fs.readFile("./db/db.json",(err,data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            const prData = JSON.parse(data);
+
+            for (let i = 0; i < prData.length; i++) {
+                console.log(prData[i].note_id)
+                if (prData[i].note_id === trashNote) {
+                    console.log("Yes")
+                    prData.splice([i],1);
+                } else{console.log("NO")}
+            }
+
+            fs.writeFile("./db/db.json",JSON.stringify(prData,null,4),(err) => {
+                err ? console.log(err) : console.log("Note Deleted");
+            });
+        }
+    });
+    next();
 });
 
-app.listen(PORT);
+app.listen(PORT,() => {
+    console.log(`Sever listening on PORT: ${PORT}`)
+});
