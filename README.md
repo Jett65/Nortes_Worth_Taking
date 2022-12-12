@@ -30,9 +30,9 @@ This app can be used to take notes save them to a database and read the nots lat
 
 ## Photos
 
-![Screenshot of site](./assets/images/openPage.png)
-![Screenshot of site](./assets/images/openPage.png)
-![Screenshot of site](./assets/images/openPage.png)
+![Screenshot of site](./Assets/HomeScreen.png)
+![Screenshot of site](./Assets/Screenshot_20221211_112547.png")
+![Screenshot of site](./Assets/Screenshot_20221211_112650.png")
 
 ## Questions
 
