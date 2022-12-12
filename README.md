@@ -41,3 +41,5 @@ For any questions contact me at
 jettc505@gmail.com
 
 [My GitHub: Jett65](https://github.com/Jett65)
+
+[Deployed](https://notes-worth-taking.herokuapp.com/)
