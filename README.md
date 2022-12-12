@@ -13,6 +13,8 @@ This is an app that alous the user to take notes and save them to a data base
 
 [Usage](#usage)
 
+[Photos](#photos)
+
 [Contributing](#contributing)
 
 [Test](#test)
@@ -28,7 +30,9 @@ This app can be used to take notes save them to a database and read the nots lat
 
 ## Photos
 
-
+![Screenshot of site](./assets/images/openPage.png)
+![Screenshot of site](./assets/images/openPage.png)
+![Screenshot of site](./assets/images/openPage.png)
 
 ## Questions
 
