@@ -28,7 +28,7 @@ app.get("/api/notes",(req,res,next) => {
     });
 });
 
-app.post("/api/notes",(req,res) => {
+app.post("/api/notes",(req,res,next) => {
 
     const newNote = {
         title: req.body.title,
@@ -48,7 +48,7 @@ app.post("/api/notes",(req,res) => {
                 err ? console.log(err) : console.log("Note Added");
             });
         }
-
+        next()
     });
 
 });
